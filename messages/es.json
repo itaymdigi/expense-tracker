@@ -1,0 +1,39 @@
+{
+  "common": {
+    "amount": "Cantidad",
+    "category": "Categoría",
+    "description": "Descripción",
+    "date": "Fecha",
+    "save": "Guardar",
+    "saving": "Guardando...",
+    "success": "Éxito",
+    "error": "Error",
+    "selectCategory": "Seleccionar categoría",
+    "expenses": "Gastos",
+    "add": "Agregar Gasto",
+    "list": "Lista de Gastos",
+    "export": "Exportar",
+    "loading": "Cargando...",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "cancel": "Cancelar",
+    "total": "Total",
+    "offline": "Estás desconectado. Los cambios se sincronizarán cuando vuelvas a estar en línea."
+  },
+  "expenses": {
+    "added": "Gasto agregado exitosamente",
+    "error": "Error al agregar el gasto"
+  },
+  "categories": {
+    "groceries": "Comestibles",
+    "household": "Hogar",
+    "utilities": "Servicios",
+    "transportation": "Transporte",
+    "other": "Otro"
+  },
+  "analytics": {
+    "monthlyExpenses": "Gastos Mensuales",
+    "categoryBreakdown": "Desglose por Categoría",
+    "totalSpent": "Total Gastado"
+  }
+} 

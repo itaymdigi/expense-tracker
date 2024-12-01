@@ -1,0 +1,39 @@
+{
+  "common": {
+    "amount": "Amount",
+    "category": "Category",
+    "description": "Description",
+    "date": "Date",
+    "save": "Save",
+    "saving": "Saving...",
+    "success": "Success",
+    "error": "Error",
+    "selectCategory": "Select a category",
+    "expenses": "Expenses",
+    "add": "Add Expense",
+    "list": "Expense List",
+    "export": "Export",
+    "loading": "Loading...",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "total": "Total",
+    "offline": "You are offline. Changes will be synced when you're back online."
+  },
+  "expenses": {
+    "added": "Expense added successfully",
+    "error": "Failed to add expense"
+  },
+  "categories": {
+    "groceries": "Groceries",
+    "household": "Household",
+    "utilities": "Utilities",
+    "transportation": "Transportation",
+    "other": "Other"
+  },
+  "analytics": {
+    "monthlyExpenses": "Monthly Expenses",
+    "categoryBreakdown": "Category Breakdown",
+    "totalSpent": "Total Spent"
+  }
+}

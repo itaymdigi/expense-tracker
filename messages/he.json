@@ -1,0 +1,40 @@
+{
+  "common": {
+    "expenses": "הוצאות",
+    "add": "הוסף הוצאה",
+    "list": "רשימת הוצאות",
+    "edit": "ערוך",
+    "delete": "מחק",
+    "save": "שמור",
+    "saving": "שומר...",
+    "cancel": "בטל",
+    "amount": "סכום",
+    "category": "קטגוריה",
+    "date": "תאריך",
+    "description": "תיאור",
+    "total": "סה״כ",
+    "loading": "טוען...",
+    "success": "הצלחה",
+    "error": "שגיאה",
+    "selectCategory": "בחר קטגוריה",
+    "export": "ייצא נתונים",
+    "exporting": "מייצא...",
+    "offline": "אתה במצב לא מקוון. השינויים יסונכרנו כשתחזור למצב מקוון."
+  },
+  "categories": {
+    "groceries": "מצרכים",
+    "household": "משק בית",
+    "utilities": "חשבונות",
+    "transportation": "תחבורה",
+    "other": "אחר"
+  },
+  "expenses": {
+    "added": "ההוצאה נוספה בהצלחה",
+    "error": "שגיאה בהוספת ההוצאה"
+  },
+  "analytics": {
+    "monthlyExpenses": "הוצאות חודשיות",
+    "categoryBreakdown": "פילוח לפי קטגוריות",
+    "totalSpent": "סה״כ הוצאות"
+  }
+}
