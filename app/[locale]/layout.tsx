@@ -1,6 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
-import { locales } from '@/i18n';
+import { locales } from '@/i18n/request';
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -8,9 +8,11 @@ export function generateStaticParams() {
 
 export default async function LocaleLayout({
   children,
+  modal,
   params: { locale }
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
   params: { locale: string };
 }) {
   let messages;
@@ -21,12 +23,11 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale}>
-      <body>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <div className="min-h-screen bg-background">
+        {children}
+        {modal}
+      </div>
+    </NextIntlClientProvider>
   );
 }

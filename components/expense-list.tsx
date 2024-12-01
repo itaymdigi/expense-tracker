@@ -14,7 +14,7 @@ import { useExpenses } from '@/hooks/use-expenses';
 
 export function ExpenseList() {
   const t = useTranslations();
-  const { expenses, loading } = useExpenses();
+  const { expenses, loading, formatCurrency } = useExpenses();
 
   if (loading) {
     return <div className="text-center py-4">{t('common.loading')}</div>;
@@ -38,10 +38,7 @@ export function ExpenseList() {
               <TableCell>{t(`categories.${expense.category}`)}</TableCell>
               <TableCell>{expense.description}</TableCell>
               <TableCell className="text-right">
-                {new Intl.NumberFormat('en-US', {
-                  style: 'currency',
-                  currency: 'USD',
-                }).format(expense.amount)}
+                {formatCurrency(expense.amount)}
               </TableCell>
             </TableRow>
           ))}

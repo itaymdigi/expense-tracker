@@ -1,25 +1,28 @@
 {
   "common": {
-    "expenses": "הוצאות",
-    "add": "הוסף הוצאה",
-    "list": "רשימת הוצאות",
-    "edit": "ערוך",
-    "delete": "מחק",
-    "save": "שמור",
-    "saving": "שומר...",
-    "cancel": "בטל",
     "amount": "סכום",
     "category": "קטגוריה",
-    "date": "תאריך",
     "description": "תיאור",
-    "total": "סה״כ",
-    "loading": "טוען...",
+    "date": "תאריך",
+    "save": "שמור",
+    "saving": "שומר...",
     "success": "הצלחה",
     "error": "שגיאה",
     "selectCategory": "בחר קטגוריה",
-    "export": "ייצא נתונים",
-    "exporting": "מייצא...",
+    "expenses": "הוצאות",
+    "add": "הוסף הוצאה",
+    "list": "רשימת הוצאות",
+    "export": "ייצוא",
+    "loading": "טוען...",
+    "edit": "ערוך",
+    "delete": "מחק",
+    "cancel": "ביטול",
+    "total": "סה״כ",
     "offline": "אתה במצב לא מקוון. השינויים יסונכרנו כשתחזור למצב מקוון."
+  },
+  "expenses": {
+    "added": "ההוצאה נוספה בהצלחה",
+    "error": "שגיאה בהוספת ההוצאה"
   },
   "categories": {
     "groceries": "מצרכים",
@@ -28,13 +31,9 @@
     "transportation": "תחבורה",
     "other": "אחר"
   },
-  "expenses": {
-    "added": "ההוצאה נוספה בהצלחה",
-    "error": "שגיאה בהוספת ההוצאה"
-  },
   "analytics": {
     "monthlyExpenses": "הוצאות חודשיות",
-    "categoryBreakdown": "פילוח לפי קטגוריות",
+    "categoryBreakdown": "פילוח לפי קטגוריה",
     "totalSpent": "סה״כ הוצאות"
   }
 }

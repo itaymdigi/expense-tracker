@@ -15,7 +15,7 @@ import { useExpenses } from '@/hooks/use-expenses';
 
 export function ExpenseChart() {
   const t = useTranslations();
-  const { expenses } = useExpenses();
+  const { expenses, formatCurrency } = useExpenses();
 
   // Process data for the chart
   const monthlyData = expenses.reduce((acc, expense) => {
@@ -50,7 +50,7 @@ export function ExpenseChart() {
               />
               <YAxis
                 width={80}
-                tickFormatter={(value) => `$${value}`}
+                tickFormatter={(value) => formatCurrency(value)}
                 allowDecimals={false}
                 allowDataOverflow={false}
                 scale="auto"
@@ -62,7 +62,7 @@ export function ExpenseChart() {
                 minTickGap={5}
               />
               <Tooltip
-                formatter={(value) => [`$${value}`, 'Amount']}
+                formatter={(value) => [formatCurrency(value as number), 'Amount']}
                 labelStyle={{ color: 'black' }}
               />
               <Line

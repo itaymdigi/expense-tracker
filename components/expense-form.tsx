@@ -15,10 +15,10 @@ import { useToast } from '@/hooks/use-toast';
 import { useExpenses } from '@/hooks/use-expenses';
 
 const expenseSchema = z.object({
-  amount: z.number().positive(),
-  category: z.string().min(1),
-  description: z.string().min(1),
-  date: z.string(),
+  amount: z.number().positive('Amount must be positive'),
+  category: z.string().min(1, 'Category is required'),
+  description: z.string().min(1, 'Description is required'),
+  date: z.string().min(1, 'Date is required'),
 });
 
 type ExpenseFormData = z.infer<typeof expenseSchema>;
@@ -26,10 +26,17 @@ type ExpenseFormData = z.infer<typeof expenseSchema>;
 export function ExpenseForm() {
   const t = useTranslations();
   const { toast } = useToast();
-  const { addExpense } = useExpenses();
+  const { addExpense, formatCurrency } = useExpenses();
   const [loading, setLoading] = useState(false);
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<ExpenseFormData>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+    setValue,
+    watch,
+  } = useForm<ExpenseFormData>({
     resolver: zodResolver(expenseSchema),
     defaultValues: {
       date: format(new Date(), 'yyyy-MM-dd'),
@@ -39,19 +46,31 @@ export function ExpenseForm() {
   const onSubmit = async (data: ExpenseFormData) => {
     try {
       setLoading(true);
-      await addExpense({
-        ...data,
-        user_id: 'placeholder', // Replace with actual user ID from auth context
-      });
+      
+      const expenseData = {
+        amount: Number(data.amount),
+        category: data.category,
+        description: data.description,
+        date: data.date,
+        user_id: 'default-user',
+      };
+      
+      await addExpense(expenseData);
+      
       toast({
         title: t('common.success'),
-        description: t('expenses.added'),
+        description: `${t('expenses.added')} - ${formatCurrency(expenseData.amount)}`,
       });
-      reset();
+      
+      reset({
+        date: format(new Date(), 'yyyy-MM-dd'),
+      });
     } catch (error) {
+      console.error('Error adding expense:', error);
+      
       toast({
         title: t('common.error'),
-        description: t('expenses.error'),
+        description: error instanceof Error ? error.message : t('expenses.error'),
         variant: 'destructive',
       });
     } finally {
@@ -62,12 +81,17 @@ export function ExpenseForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="amount">{t('common.amount')}</Label>
+        <Label htmlFor="amount">{t('common.amount')} (₪)</Label>
         <Input
           id="amount"
           type="number"
           step="0.01"
-          {...register('amount', { valueAsNumber: true })}
+          min="0"
+          placeholder="0.00"
+          {...register('amount', { 
+            valueAsNumber: true,
+            required: true,
+          })}
         />
         {errors.amount && (
           <p className="text-sm text-destructive">{errors.amount.message}</p>
@@ -76,7 +100,10 @@ export function ExpenseForm() {
 
       <div className="space-y-2">
         <Label htmlFor="category">{t('common.category')}</Label>
-        <Select {...register('category')}>
+        <Select
+          onValueChange={(value) => setValue('category', value)}
+          value={watch('category')}
+        >
           <SelectTrigger>
             <SelectValue placeholder={t('common.selectCategory')} />
           </SelectTrigger>
@@ -95,7 +122,10 @@ export function ExpenseForm() {
 
       <div className="space-y-2">
         <Label htmlFor="description">{t('common.description')}</Label>
-        <Input id="description" {...register('description')} />
+        <Input 
+          id="description" 
+          {...register('description', { required: true })}
+        />
         {errors.description && (
           <p className="text-sm text-destructive">{errors.description.message}</p>
         )}
@@ -107,7 +137,7 @@ export function ExpenseForm() {
           <Input
             id="date"
             type="date"
-            {...register('date')}
+            {...register('date', { required: true })}
           />
           <CalendarIcon className="absolute right-3 top-2.5 h-4 w-4 text-muted-foreground" />
         </div>
